@@ -1,0 +1,33 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="row">
+    <h1 class="text-center">Add a new location</h1>
+
+    <div class="col-6 offset-3">
+    <form action="/places" method="POST">
+        <div class="mb-3">
+            <label class="form-label" for="title">Title</label>
+            <input class="form-control" type="text" id="title" name="title">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="location">Location</label>
+            <input class="form-control" type="text" id="location" name="location">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="description">Description</label>
+            <input class="form-control" type="text" id="description" name="description">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="image">Image</label>
+            <input class="form-control" type="text" id="image" name="image">
+        </div>
+        <div class="mb-3">
+        <button class="btn btn-success" type="submit">Add a place</button>
+        </div>
+    </form>
+
+    <a href="/places">All Places</a>
+    </div>
+</div>
