@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 const ejsMate = require('ejs-mate')
 const Place = require('./models/Place')
 const morgan = require('morgan')
+const Review = require('./models/Review')
+
 
 const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/abandoned-places";
 
@@ -49,8 +51,7 @@ app.get('/places/new', (req, res) => {
 })
 
 app.get('/places/:id', async (req, res) => {
-   
-    const place = await Place.findById(req.params.id)
+    const place = await Place.findById(req.params.id).populate('reviews')
     res.render('places/show', { place });
 });
 
@@ -66,7 +67,7 @@ app.post('/places/:id/edit', (req, res) => {
     .then(() => {
         res.redirect(`/places/${id}`)
     })
-    .catch(error => next(error))
+    .catch(err => next(err))
 })
 
 app.post('/places/:id/delete', async (req, res) => {
@@ -74,6 +75,24 @@ app.post('/places/:id/delete', async (req, res) => {
     await Place.findByIdAndDelete(id);
     res.redirect('/places');
 })
+
+app.post('/places/:id/reviews', async (req, res) => {
+    const place = await Place.findById(req.params.id)
+    const review = new Review(req.body.review)
+    place.reviews.push(review);
+    await review.save();
+    await place.save();
+    res.redirect(`/places/${place._id}`)
+})
+
+app.post('/places/:id/reviews/:reviewId/delete', async (req, res) => {
+    const { id, reviewId } = req.params
+    await Place.findByIdAndUpdate( id, { $pull: { reviews: reviewId } } )
+    await Review.findByIdAndDelete(reviewId)
+    res.redirect(`/places/${id}`)
+})
+
+require("./error-handling")(app)
 
 app.listen(3000, () => {
     console.log('Listening on port3000')

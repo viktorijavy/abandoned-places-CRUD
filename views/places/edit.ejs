@@ -3,23 +3,23 @@
 <div class="row">
     <h1 class="text-center">Edit Location</h1>
     <div class="col-6 offset-3">
-    <form action="/places/<%=place._id%>/edit" method="POST">
+    <form action="/places/<%=place._id%>/edit" method="POST" novalidate class="needs-validation">
         <div class="mb-3">
             <label class="form-label" for="title">Title</label>
-            <input class="form-control" type="text" id="title" name="title" value="<%=place.title %>">
+            <input class="form-control" type="text" id="title" name="title" value="<%=place.title %>" required>
         </div>
         <div class="mb-3">
             <label class="form-label" for="location">Location</label>
-            <input class="form-control" type="text" id="location" name="location" value="<%= place.location%>">
+            <input class="form-control" type="text" id="location" name="location" value="<%= place.location%>" required>
         </div>
 
         <div class="mb-3">
             <label class="form-label" for="description">Description</label>
-            <input class="form-control" type="text" id="description" name="description" value="<%= place.description%>">
+            <input class="form-control" type="text" id="description" name="description" value="<%= place.description%>" required>
         </div>
         <div class="mb-3">
             <label class="form-label" for="image">Image</label>
-            <input class="form-control" type="text" id="image" name="image" value="<%= place.image%>">
+            <input class="form-control" type="text" id="image" name="image" value="<%= place.image%>" required>
         </div>
         <div class="mb-3">
         <button class="btn btn-success">Update Place</button>
