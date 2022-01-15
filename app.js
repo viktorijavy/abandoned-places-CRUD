@@ -56,18 +56,15 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// app.use((req, res, next) => {
-//     console.log(req.session)
-//     res.locals.currentUser = req.user;
-//     res.locals.success = req.flash('success');
-//     res.locals.error = req.flash('error');
-//     next();
-// })
-
-
-app.get('/', (req, res) => {
-    res.render('home')
+app.use((req, res, next) => {
+    console.log('this is req session info', req.session)
+    res.locals.user = req.user;
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
 })
+
+
 
 const places = require("./routes/places")
 app.use("/", places)
@@ -77,6 +74,11 @@ app.use("/", reviews)
 
 const auth = require('./routes/auth');
 app.use("/", auth)
+
+
+app.get('/', (req, res) => {
+    res.render('home')
+})
 
 require("./error-handling")(app)
 
