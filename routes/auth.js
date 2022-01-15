@@ -13,6 +13,7 @@ router.post('/register', async (req, res, next) => {
         const user = new User({ email, username})
         const registeredUser = await User.register(user, password)
         req.login(registeredUser, err => {
+            
             if (err) return next(err);
             req.flash('success', 'Welcome to abandoned places!')
         res.redirect('/places')
@@ -31,6 +32,7 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
+    
     req.flash('success', 'welcome back!')
     const redirectUrl = req.session.returnTo || '/places';
     // delete req.session.returnTo;

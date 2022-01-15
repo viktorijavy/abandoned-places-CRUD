@@ -1,5 +1,5 @@
 const express = require('express');
-const { isLoggedIn } = require('../middleware');
+const { isLoggedIn, isAuthor } = require('../middleware');
 const router = express.Router();
 
 const Place = require('../models/Place')
@@ -13,6 +13,7 @@ router.get('/places', async (req, res) => {
 
 router.post('/places', isLoggedIn, async (req, res) => {
     const place = new Place(req.body);
+    place.author = req.user._id
     await place.save();
     req.flash('success', 'new location added')
     res.redirect(`/places`)
@@ -23,16 +24,22 @@ router.get('/places/new', isLoggedIn, (req, res) => {
 })
 
 router.get('/places/:id', async (req, res) => {
-    const place = await Place.findById(req.params.id).populate('reviews')
+    const place = await Place.findById(req.params.id).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    }).populate('author')
+    console.log('location is', place)
     res.render('places/show', { place });
 });
 
-router.get('/places/:id/edit', isLoggedIn, async (req, res) => {
+router.get('/places/:id/edit', isLoggedIn, isAuthor, async (req, res) => {
     const place = await Place.findById(req.params.id)
     res.render('places/edit', { place })
 })
 
-router.post('/places/:id/edit', isLoggedIn, (req, res) => {
+router.post('/places/:id/edit', isLoggedIn, isAuthor, (req, res) => {
     const id = req.params.id
     const { title, location, description, image } = req.body
     Place.findByIdAndUpdate(id, { title, location, description, image }, { new: true })
@@ -42,7 +49,7 @@ router.post('/places/:id/edit', isLoggedIn, (req, res) => {
         .catch(err => next(err))
 })
 
-router.post('/places/:id/delete', isLoggedIn, async (req, res) => {
+router.post('/places/:id/delete', isLoggedIn, isAuthor, async (req, res) => {
     const id = req.params.id;
     await Place.findByIdAndDelete(id);
     res.redirect('/places');
