@@ -3,7 +3,7 @@
 <div class="row">
     <h1 class="text-center">Edit Location</h1>
     <div class="col-6 offset-3">
-    <form action="/places/<%=place._id%>/edit" method="POST" novalidate class="needs-validation">
+    <form action="/places/<%=place._id%>/edit" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label" for="title">Title</label>
             <input class="form-control" type="text" id="title" name="title" value="<%=place.title %>" required>
@@ -19,7 +19,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label" for="image">Image</label>
-            <input class="form-control" type="text" id="image" name="image" value="<%= place.image%>" required>
+            <input type="file" name="image" id="image" multiple>
         </div>
         <div class="mb-3">
         <button class="btn btn-success">Update Place</button>

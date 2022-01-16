@@ -5,7 +5,12 @@ const placeSchema = new Schema ({
     title: String,
     description: String,
     location: String,
-    image: String,
+    images: [
+        { 
+            url: String,
+            filename: String
+        }
+    ],
     author: {
             type: Schema.Types.ObjectId,
             ref: 'User'
