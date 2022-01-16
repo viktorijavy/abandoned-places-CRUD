@@ -7,7 +7,7 @@ const multer = require('multer');
 const upload = multer({ storage });
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding')
 const mapBoxToken = process.env.MAPBOX_TOKEN
-const geocoder = mbxGeocoding({ accessToken: mapBoxToken})
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken })
 
 
 router.get('/places', async (req, res) => {
@@ -17,21 +17,20 @@ router.get('/places', async (req, res) => {
 })
 
 router.post('/places', isLoggedIn, upload.array('image'), async (req, res) => {
-    
-   const geoData = await geocoder.forwardGeocode({
-       
+
+    const geoData = await geocoder.forwardGeocode({
+
         query: req.body.location,
         limit: 1
     }).send()
-    console.log('cia yra geodata', geoData.body.features)
-    res.send(geoData.body.features[0].geometry.coordinates)
-    // const place = new Place(req.body);
-    // place.images = req.files.map(f => ({url: f.path, filename: f.filename }))
-    // place.author = req.user._id
-    // await place.save();
-    // console.log('place', place)
-    // req.flash('success', 'new location added')
-    // res.redirect(`/places`)
+    const place = new Place(req.body);
+    place.geometry = geoData.body.features[0].geometry
+    place.images = req.files.map(f => ({ url: f.path, filename: f.filename }))
+    place.author = req.user._id
+    await place.save();
+    console.log('place', place)
+    req.flash('success', 'new location added')
+    res.redirect(`/places`)
 })
 
 
@@ -56,21 +55,11 @@ router.get('/places/:id/edit', isLoggedIn, isAuthor, async (req, res) => {
     res.render('places/edit', { place })
 })
 
-// router.post('/places/:id/edit', isLoggedIn, isAuthor, (req, res) => {
-//     const id = req.params.id
-//     const { title, location, description, image } = req.body
-//     Place.findByIdAndUpdate(id, { title, location, description, image }, { new: true })
-    
-//         .then(() => {
-//             res.redirect(`/places/${id}`)
-//         })
-//         .catch(err => next(err))
-// })
 
 router.post('/places/:id/edit', isLoggedIn, isAuthor, upload.array('image'), async (req, res) => {
-    const id  = req.params.id;
+    const id = req.params.id;
     const place = await Place.findByIdAndUpdate(id, { ...req.body });
-    const imgs = req.files.map(f => ({url: f.path, filename: f.filename }))
+    const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }))
     place.images.push(...imgs)
     await place.save()
     req.flash('success', 'Successfully updated campground!');

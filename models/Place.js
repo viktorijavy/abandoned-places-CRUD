@@ -4,6 +4,17 @@ const Schema = mongoose.Schema;
 const placeSchema = new Schema ({
     title: String,
     description: String,
+    geometry: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    },
     location: String,
     images: [
         { 
