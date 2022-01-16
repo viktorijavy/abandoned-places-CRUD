@@ -4,7 +4,7 @@
     <h1 class="text-center">Add a new location</h1>
 
     <div class="col-6 offset-3">
-    <form action="/places" method="POST" novalidate class="needs-validation">
+    <form action="/places" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label" for="title">Title</label>
             <input class="form-control" type="text" id="title" name="title" required>
@@ -18,11 +18,11 @@
             <label class="form-label" for="description">Description</label>
             <input class="form-control" type="text" id="description" name="description" required>
         </div>
-
-        <div class="mb-3">
+        <input type="file" name="image" id="image">
+        <!-- <div class="mb-3">
             <label class="form-label" for="image">Image</label>
             <input class="form-control" type="text" id="image" name="image" required>
-        </div>
+        </div> -->
         <div class="mb-3">
         <button class="btn btn-success" type="submit">Add a place</button>
         </div>

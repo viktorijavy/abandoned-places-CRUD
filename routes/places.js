@@ -1,8 +1,10 @@
 const express = require('express');
 const { isLoggedIn, isAuthor } = require('../middleware');
 const router = express.Router();
-
+const { storage } = require('../cloudinary/cloudinary-config')
 const Place = require('../models/Place')
+const multer = require('multer');
+const upload = multer({ storage });
 
 
 router.get('/places', async (req, res) => {
@@ -11,12 +13,17 @@ router.get('/places', async (req, res) => {
     res.render('places/index', { places })
 })
 
-router.post('/places', isLoggedIn, async (req, res) => {
-    const place = new Place(req.body);
-    place.author = req.user._id
-    await place.save();
-    req.flash('success', 'new location added')
-    res.redirect(`/places`)
+// router.post('/places', isLoggedIn, async (req, res) => {
+//     const place = new Place(req.body);
+//     place.author = req.user._id
+//     await place.save();
+//     req.flash('success', 'new location added')
+//     res.redirect(`/places`)
+// })
+
+router.post('/places', upload.array('image'), (req, res) => {
+    console.log(req.body, req.files)
+    res.send('it worked!')
 })
 
 router.get('/places/new', isLoggedIn, (req, res) => {
