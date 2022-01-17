@@ -5,7 +5,7 @@
   <div class="col-6">
     <div class="card mb-3">
 
-        <!-- <div id='map' style='width: 630px; height: 300px;'></div> -->
+       
 
 <div id="placeCarousel" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
@@ -29,13 +29,15 @@
 </div>
 
 
-      <div class="card-body">
+      <div class="card-body" >
         <h3><%= place.title %></h3>
 
         <p><%= place.description %></p>
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item text-muted"><%= place.location %></li>
+      <!-- class="list-group list-group-flush" -->
+      <ul>
+        
+        <li class="text-muted"><%= place.location %></li>
        
       </ul>
   <%  if (user && place.author.equals(user._id)) {%>

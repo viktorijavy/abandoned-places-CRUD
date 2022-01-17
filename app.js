@@ -13,7 +13,7 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/User');
-const flash = require('connect-flash')
+const flash = require('connect-flash');
 
 
 const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/abandoned-places";
@@ -70,8 +70,6 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error');
     next();
 })
-
-
 
 const places = require("./routes/places")
 app.use("/", places)
