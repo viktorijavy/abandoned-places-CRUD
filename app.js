@@ -9,11 +9,14 @@ const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
+
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/User');
 const flash = require('connect-flash');
+
+const session = require('express-session');
+const MongoStore = require('connect-mongo')
 
 
 const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/abandoned-places";
@@ -40,15 +43,31 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')))
 
+const secret = process.env.SECRET || 'mousedog';
+
+// const store = new MongoStore({
+//   url: MONGO_URI,
+//   secret: 'mousedog',
+//   touchAfter: 24 * 60 * 60
+// })
+
+// store.on("error", function (e) {
+//   console.log("SESSION STORE ERROR", e)
+// })
+
 const sessionConfig = {
-    secret: 'mousedog',
+  
+    secret: secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
-    }
+    },
+    store: MongoStore.create({
+			mongoUrl: MONGO_URI
+    })
 }
 
 app.use(session(sessionConfig))
