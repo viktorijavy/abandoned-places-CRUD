@@ -106,6 +106,8 @@ app.get('/', (req, res) => {
 
 require("./error-handling")(app)
 
-app.listen(3000, () => {
-    console.log('Listening on port3000')
+
+const port = process.env.PORT || 3000
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`)
 })
