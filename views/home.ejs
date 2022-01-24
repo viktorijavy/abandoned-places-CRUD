@@ -17,60 +17,55 @@
       href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100&family=Open+Sans:wght@300&family=Raleway:wght@100;200&family=Zen+Kaku+Gothic+New:wght@300&family=Zen+Kurenaido&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/stylesheets/styles.css" />
+    <link rel="stylesheet" href="/stylesheets/home-page.css" />
+    <link rel="stylesheet" href="/stylesheets/icon-font.css">
+    <link rel="stylesheet" href="/stylesheets/sass/sass-styles.scss">
   </head>
-  <body class="pic-shadow">
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark" id="navbar">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">un/forgotten places</a>
-        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button> -->
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link" href="/">home</a>
-            <a class="nav-link" href="/places">places</a>
-            <a class="nav-link" href="/places/new">add a new place</a>
-          </div>
+  <body>
+    <header class="header">
+      <div class="logo-box">
+        <img src="/images/logo-white.png" alt="logo" class="logo" />
+      </div>
 
-          <div class="navbar-nav ml-auto">
-            <% if (!user) {%>
+      <div class="text-box">
+        <h1 class="heading-primary">
+          <span class="heading-primary main">un/forgotten places</span>
+          <span class="heading-primary small">come to explore them</span>
+        </h1>
+        <a href="/#" class="btn btn-white">Discover</a>
+      </div>
+    </header>
+    <section class="section-about">
+      <div class="u-center-text u-margin-bottom-big">
+        <h1 class="heading-secondary">
+          Exciting tours for adventurous people
+        </h1>
+      </div>
 
-            <a class="nav-link" href="/login">login</a>
-            <a class="nav-link" href="/register">register</a>
-            <% } else {%>
-            <a class="nav-link" href="/logout">logout</a>
-            <%}%>
+      <div class="row">
+        <div class="col-1-of-2">
+          <h3 class="heading-terciary u-margin-bottom-small">
+            You are going to fall in love with nature
+          </h3>
+          <p class="paragraph">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro
+            atque libero deserunt placeat sapiente aut consectetur eligendi
+            rerum voluptate eos, incidunt nostrum saepe, quia facere ipsa
+            aperiam debitis voluptates? Corporis.
+          </p>
+          <a href="#" class="btn-text">Learn more &rarr;</a>
+        </div>
+
+        <div class="col-1-of-2">
+            
+            <div class="composition">
+              <img src="/images/pic5.jfif" alt="photo1" class="composition__photo composition__photo--p1">
+              <img src="/images/pic6.jfif" alt="photo2" class="composition__photo composition__photo--p2">
+              <img src="/images/pic7.jfif" alt="photo3" class="composition__photo composition__photo--p3">
           </div>
         </div>
       </div>
-    </nav>
-    
+    </section>
 
-    <div class="home-page-text">
-        <h1> Welcome to un/forgotten places!</h1>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error minima totam illo aperiam sapiente labore 
-            sequi quo doloribus dolore suscipit laudantium doloremque reiciendis, deleniti tempora praesentium qui, culpa nihil a!
-            orem ipsum dolor sit, amet consectetur adipisicing elit. Error minima totam illo aperiam sapiente labore 
-            sequi quo doloribus dolore suscipit laudantium doloremque reiciendis, deleniti tempora praesentium qui, culpa nihil a</p>
-    </div>
-      <!-- <img
-        class="main-pic"
-        src="https://images.unsplash.com/photo-1521446493705-a015c307dbda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80"
-        alt=""
-      /> -->
-    
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>
