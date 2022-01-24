@@ -1,10 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@100&family=Montserrat:wght@100&family=Open+Sans:wght@300&family=Raleway:wght@100;200&family=Zen+Kaku+Gothic+New:wght@300&family=Zen+Kurenaido&display=swap");
 
 /* .background-dark {
     background-color: #F4F4F4;
 } */
 
+
+html {
+    font-size: 16px;
+}
 body {
-    font-family: 'Montserat', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
 
 }
@@ -30,10 +35,26 @@ body {
     text-align: center;
 }
 
-/* .login-background {
-    width: 1000px;
-    height: 1000px;
-    background-image: url("/images/wall1.jfif");
-    background-size: cover;
-    background-position: top;
-} */
+.button {
+    text-decoration: none;
+  padding: 0.3rem 0.8rem;
+  display: inline-block;
+  border-radius: 2px;
+  transition: all 0.2s;
+  font-size: 1rem;
+  font-weight: 400;
+  border: 1px solid #1f7699;
+  background-color: #1f7699;
+  color: white;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.2rem 0.5rem;
+}
+
+.button:active {
+  transform: translate(-1px);
+  border: none;
+}
+
