@@ -62,7 +62,7 @@ router.post('/places/:id/edit', isLoggedIn, isAuthor, upload.array('image'), asy
     const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }))
     place.images.push(...imgs)
     await place.save()
-    req.flash('success', 'Successfully updated campground!');
+    req.flash('success', 'Successfully updated location!');
     res.redirect(`/places/${place._id}`)
 });
 

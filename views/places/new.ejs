@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate')%>
 
-<a class="link-to-back" href="/places">&larr; back to all</a>
+<!-- <a class="link-to-back" href="/places">&larr; back to all</a> -->
 <div class="row">
     <h1 class="text-center">Add a new location</h1>
 
@@ -8,16 +8,16 @@
     <form action="/places" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label" for="title">Title</label>
-            <input class="form-control" type="text" id="title" name="title" required>
+            <input class="form-control input-font" type="text" id="title" name="title" required>
         </div>
         <div class="mb-3">
             <label class="form-label" for="location">Location</label>
-            <input class="form-control" type="text" id="location" name="location" required>
+            <input class="form-control input-font" type="text" id="location" name="location" required>
         </div>
 
         <div class="mb-3">
             <label class="form-label" for="description">Description</label>
-            <input class="form-control" type="text" id="description" name="description" required>
+            <textarea class="form-control input-font" type="text" id="description" name="description" required></textarea>
         </div>
         <div class="mb-3">
         <label for="image"> Chose images </label>    
@@ -26,7 +26,8 @@
            
        </div>
         <div class="mb-3">
-        <button class="btn btn-success" type="submit">Add a place</button>
+        <button class="button" type="submit">Add a place</button>
+        <a class="button" href="/places">Cancel</a>
         </div>
     </form>
 

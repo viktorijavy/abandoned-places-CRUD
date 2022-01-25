@@ -6,26 +6,27 @@
     <form action="/places/<%=place._id%>/edit" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label" for="title">Title</label>
-            <input class="form-control" type="text" id="title" name="title" value="<%=place.title %>" required>
+            <input class="form-control input-font" type="text" id="title" name="title" value="<%=place.title %>" required>
         </div>
         <div class="mb-3">
             <label class="form-label" for="location">Location</label>
-            <input class="form-control" type="text" id="location" name="location" value="<%= place.location%>" required>
+            <input class="form-control input-font" type="text" id="location" name="location" value="<%= place.location%>" required>
         </div>
 
         <div class="mb-3">
             <label class="form-label" for="description">Description</label>
-            <input class="form-control" type="text" id="description" name="description" value="<%= place.description%>" required>
+            <textarea class="form-control input-font" type="text" id="description" name="description" required>"<%= place.description%>"</textarea>
         </div>
         <div class="mb-3">
             <label class="form-label" for="image">Image</label>
             <input type="file" name="image" id="image" multiple>
         </div>
         <div class="mb-3">
-        <button class="btn btn-success">Update Place</button>
+        <button class="button">Update Place</button>
+        <a class="button" href="/places/<%= place._id%>">Cancel</a>
         </div>
     </form>
-    <a href="/places/<%= place._id%>">Back To Places</a>
+    
    </div>
 </div>
     
