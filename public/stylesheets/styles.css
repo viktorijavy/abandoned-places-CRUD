@@ -15,11 +15,14 @@ body {
 }
 
 #navbar {
+    color: white;
+    font-size: 1.2rem;
     background-image: linear-gradient(
-      rgba(53, 53, 53, 0.8),
-      rgba(18, 69, 89, 0.8)
-    ),
-    url("/images/pic1.jpg");
+      rgba(21, 31, 53, 0.9),
+      rgba(18, 69, 89, 0.9)
+    )
+
+    
 }
 
 

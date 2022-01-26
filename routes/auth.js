@@ -15,7 +15,7 @@ router.post('/register', async (req, res, next) => {
         req.login(registeredUser, err => {
             
             if (err) return next(err);
-            req.flash('success', 'Welcome to abandoned places!')
+            req.flash('success', 'Welcome to unforgotten places!')
         res.redirect('/places')
         })
         
