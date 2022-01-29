@@ -164,6 +164,8 @@ body {
   z-index: 20;
   border: 3px solid #124559;
   padding: 20px;
+  border-radius:3px;
+  background-color: white;
 }
 .row {
   max-width: 114rem;
